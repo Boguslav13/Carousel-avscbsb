@@ -1,5 +1,5 @@
 # Carousel-avscbsb
-A very simple slide by slide carousel
+A very simple slide by slide vanilla javascript carousel
 
 Hi everybody.
 
