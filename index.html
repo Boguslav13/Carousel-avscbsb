@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/style.css?">
+		<script src="js/Carousel-move_for_some_px.js"></script>
 </head>
 <body>
 
@@ -73,6 +74,50 @@
   </div>
 </div>
 
-<script src="js/Carousel-move_slide_by_slide.js"></script>
+<script>
+const elC = document.getElementById( 'Carousel' );
+
+elC.addEventListener( 'mousedown' , hold , false );
+elC.addEventListener( 'touchstart' , hold, false );
+
+elC.addEventListener( 'mouseup' , release , false );
+elC.addEventListener( 'touchend' , release , false );
+
+elC.addEventListener( 'touchmove' , e => { e.preventDefault() } , false );
+
+onselectstart = (e) => {
+	e.preventDefault()
+}
+
+var x0 = null;
+var move = 0;
+
+function hold( e )
+{
+	x0 = unify( e ).clientX;
+}
+
+
+function release( e )
+{
+	move = unify(e).clientX - x0;
+	x0 = null;
+
+	if( move > 0 )
+	{
+		SlideShow( 'Carousel' , '-1' );
+	} else {
+		SlideShow( 'Carousel' , '+1' );
+	}
+}
+
+
+function unify( e )
+{
+	return e.changedTouches ? e.changedTouches[0] : e;
+}
+
+</script>
+
 	</body>
 </html>
